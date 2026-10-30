@@ -1,9 +1,19 @@
-import React from 'react'
 
-function ShopeContext() {
+import { createContext, useState } from 'react'
+import { productsData } from '../data'
+
+export const ShopeContext = createContext()
+
+export function ShopeContextProvider({ children }) {
+  const [products, setProducts] = useState(productsData)
+
   return (
-    <div>ShopeContext</div>
+    <ShopeContext.Provider
+      value={{ products, setProducts }}
+    >
+      {children}
+    </ShopeContext.Provider>
   )
 }
 
-export default ShopeContext
+export default ShopeContextProvider
